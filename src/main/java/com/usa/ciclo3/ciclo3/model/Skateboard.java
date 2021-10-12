@@ -1,11 +1,14 @@
 package com.usa.ciclo3.ciclo3.model;
 
+import com.sun.istack.NotNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="Skate")
-public class Skateboard implements Serializable{
+public class Skateboard implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,13 +16,11 @@ public class Skateboard implements Serializable{
     private String name;
     private String brand;
     private Integer year;
-    private Integer category;
     private String description;
 
-
-    public Integer getCategory() { return category; }
-
-    public void setCategory(Integer category) { this.category = category; }
+    @ManyToOne
+    @JoinColumn(name = "categoryId")
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -59,5 +60,13 @@ public class Skateboard implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
