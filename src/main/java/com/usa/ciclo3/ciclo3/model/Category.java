@@ -1,6 +1,6 @@
 package com.usa.ciclo3.ciclo3.model;
 
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,11 +13,14 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 45)
     private String name;
+    @Column(length = 250)
     private String description;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "category")
-    private List<Skateboard> skateboards;
+    @JsonIgnoreProperties("category")
+    private List<Skateboard> skates;
 
     public Integer getId() {
         return id;
@@ -43,11 +46,11 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public List<Skateboard> getSkateboards() {
-        return skateboards;
+    public List<Skateboard> getSkates() {
+        return skates;
     }
 
-    public void setSkateboards(List<Skateboard> skateboards) {
-        this.skateboards = skateboards;
+    public void setSkates(List<Skateboard> skates) {
+        this.skates = skates;
     }
 }
