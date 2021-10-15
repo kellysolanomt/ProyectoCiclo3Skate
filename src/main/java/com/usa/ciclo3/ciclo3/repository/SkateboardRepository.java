@@ -15,14 +15,11 @@ public class SkateboardRepository {
     private SkateboardCrudRepository skateboardCrudRepository;
     public List<Skateboard> getAll(){
         return (List<Skateboard>) skateboardCrudRepository.findAll();
-
     }
-
     public Optional<Skateboard> getSkateboard(int id){
         return skateboardCrudRepository.findById(id);
     }
-
-    public Skateboard save(Skateboard skate){
-        return skateboardCrudRepository.save(skate);
+    public Skateboard save(Skateboard skateboard){
+        return skateboardCrudRepository.save(skateboard);
     }
 }

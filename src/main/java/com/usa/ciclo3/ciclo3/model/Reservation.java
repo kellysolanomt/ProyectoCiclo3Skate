@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name="Reservation")
@@ -13,15 +14,34 @@ public class Reservation implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
-    private Date startDate;
-    private Date devolutionDate;
-    private String status;
-    private String score=null;
+    @Column
+    private Timestamp startDate;
+    @Column
+    private Timestamp devolutionDate;
+    @Column
+    private String status = "created";
+
+    @ManyToOne
+    @JoinColumn(name = "skateId")
+    @JsonIgnoreProperties({"reservations", "Client"})
+    private Skateboard skate;
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    //@JsonIgnoreProperties("messages")
+    @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
+
+    @OneToOne
+    @JsonIgnoreProperties("reservation")
+    private Score score;
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
 
     public Integer getIdReservation() {
         return idReservation;
@@ -31,19 +51,19 @@ public class Reservation implements Serializable{
         this.idReservation = idReservation;
     }
 
-    public Date getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
-    public Date getDevolutionDate() {
+    public Timestamp getDevolutionDate() {
         return devolutionDate;
     }
 
-    public void setDevolutionDate(Date devolutionDate) {
+    public void setDevolutionDate(Timestamp devolutionDate) {
         this.devolutionDate = devolutionDate;
     }
 
@@ -55,11 +75,20 @@ public class Reservation implements Serializable{
         this.status = status;
     }
 
-    public String getScore() {
-        return score;
+    public Skateboard getSkate() {
+        return skate;
     }
 
-    public void setScore(String score) {
-        this.score = score;
+    public void setSkate(Skateboard skate) {
+        this.skate = skate;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
 }

@@ -23,16 +23,16 @@ public class SkateboardService {
         return skateboardRepository.getSkateboard(id);
     }
     
-    public Skateboard save(Skateboard skate){
-        if(skate.getId()==null){
-            return skateboardRepository.save(skate);
+    public Skateboard save(Skateboard skateboard){
+        if(skateboard.getId()==null){
+            return skateboardRepository.save(skateboard);
         }
         else{
-            Optional<Skateboard> skateAux=skateboardRepository.getSkateboard(skate.getId());
+            Optional<Skateboard> skateAux=skateboardRepository.getSkateboard(skateboard.getId());
             if(skateAux.isEmpty()){
-                return skateboardRepository.save(skate);
+                return skateboardRepository.save(skateboard);
             }else{
-                return skate;
+                return skateboard;
             }
         }
     }

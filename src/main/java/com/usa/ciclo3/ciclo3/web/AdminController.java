@@ -1,6 +1,8 @@
 package com.usa.ciclo3.ciclo3.web;
 
+import com.usa.ciclo3.ciclo3.model.Admin;
 import com.usa.ciclo3.ciclo3.model.Skateboard;
+import com.usa.ciclo3.ciclo3.service.AdminService;
 import com.usa.ciclo3.ciclo3.service.SkateboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,26 +12,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Skate")
+@RequestMapping("/api/Admin")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class SkateboardController {
+public class AdminController {
 
     @Autowired
-    private SkateboardService skateboardService;
+    private AdminService adminService;
 
     @GetMapping("/all")
-    public List<Skateboard> getSkateboards(){
-        return skateboardService.getAll();
+    public List<Admin> getAdmins(){
+        return adminService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Skateboard> getSkateboard(@PathVariable("id") int id){
-        return skateboardService.getSkateboard(id);
+    public Optional<Admin> getAdmin(@PathVariable("id") int id){
+        return adminService.getAdmin(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Skateboard saveSkateboard(@RequestBody Skateboard skateboard){
-        return skateboardService.save(skateboard);
+    public Admin saveAdmin(@RequestBody Admin admin){
+        return adminService.save(admin);
     }
+
 }

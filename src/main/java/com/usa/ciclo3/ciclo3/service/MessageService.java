@@ -1,6 +1,5 @@
 package com.usa.ciclo3.ciclo3.service;
 
-import com.usa.ciclo3.ciclo3.model.Category;
 import com.usa.ciclo3.ciclo3.model.Message;
 import com.usa.ciclo3.ciclo3.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.usa.ciclo3.ciclo3.service;
 
-import com.usa.ciclo3.ciclo3.model.Category;
 import com.usa.ciclo3.ciclo3.model.Client;
 import com.usa.ciclo3.ciclo3.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
