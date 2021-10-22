@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.web;
 
 import com.usa.ciclo3.ciclo3.model.Message;
+import com.usa.ciclo3.ciclo3.model.Skateboard;
 import com.usa.ciclo3.ciclo3.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,4 +33,10 @@ public class MessageController {
     public Message saveMessage(@RequestBody Message message){
         return messageService.save(message);
     }
+
+    @PutMapping("/update")
+    public Message updateMessage(@RequestBody Message message){ return messageService.update(message);}
+
+    @DeleteMapping("/{id}")
+    public boolean deleteMessage(@PathVariable("id") int messageId){ return messageService.deleteMessage(messageId);}
 }

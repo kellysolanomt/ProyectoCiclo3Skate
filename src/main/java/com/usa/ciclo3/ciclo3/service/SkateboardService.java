@@ -36,4 +36,40 @@ public class SkateboardService {
             }
         }
     }
+
+    public Skateboard update(Skateboard skateboard){
+        if(skateboard.getId()!=null){
+            Optional<Skateboard> skateEjemplo=skateboardRepository.getSkateboard(skateboard.getId());
+            if(!skateEjemplo.isEmpty()){
+                if(skateboard.getName()!=null){
+                    skateEjemplo.get().setName(skateboard.getName());
+                }
+                if(skateboard.getBrand()!=null){
+                    skateEjemplo.get().setBrand(skateboard.getBrand());
+                }
+                if(skateboard.getYear()!=null){
+                    skateEjemplo.get().setYear(skateboard.getYear());
+                }
+                if(skateboard.getDescription()!=null){
+                    skateEjemplo.get().setDescription(skateboard.getDescription());
+                }
+                skateboardRepository.save(skateEjemplo.get());
+                return skateEjemplo.get();
+            }
+            else{
+                return skateboard;
+            }
+        }
+        else{
+            return skateboard;
+        }
+    }
+
+    public boolean deleteSkate(int id){
+        Boolean aBoolean = getSkateboard(id).map(skateboard -> {
+            skateboardRepository.delete(skateboard);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
 }

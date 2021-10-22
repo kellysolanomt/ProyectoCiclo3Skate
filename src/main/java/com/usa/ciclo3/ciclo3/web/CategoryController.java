@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.web;
 
 import com.usa.ciclo3.ciclo3.model.Category;
+import com.usa.ciclo3.ciclo3.model.Skateboard;
 import com.usa.ciclo3.ciclo3.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,4 +33,10 @@ public class CategoryController {
     public Category saveCategory(@RequestBody Category category){
         return categoryService.save(category);
     }
+
+    @PutMapping("/update")
+    public Category updateCategory(@RequestBody Category category){ return categoryService.update(category);}
+
+    @DeleteMapping("/{id}")
+    public boolean deleteCategory(@PathVariable("id") int categoryId){ return categoryService.deleteCategory(categoryId);}
 }

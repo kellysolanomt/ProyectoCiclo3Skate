@@ -32,4 +32,10 @@ public class SkateboardController {
     public Skateboard saveSkateboard(@RequestBody Skateboard skateboard){
         return skateboardService.save(skateboard);
     }
+
+    @PutMapping("/update")
+    public Skateboard updateSkateboard(@RequestBody Skateboard skateboard){ return skateboardService.update(skateboard);}
+
+    @DeleteMapping("/{id}")
+    public boolean deleteSkateboard(@PathVariable("id") int skateId){ return skateboardService.deleteSkate(skateId);}
 }

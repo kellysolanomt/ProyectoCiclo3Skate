@@ -1,7 +1,6 @@
 package com.usa.ciclo3.ciclo3.repository;
 
 import com.usa.ciclo3.ciclo3.model.Score;
-import com.usa.ciclo3.ciclo3.model.Skateboard;
 import com.usa.ciclo3.ciclo3.repository.crud.ScoreCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +18,6 @@ public class ScoreRepository {
     public Optional<Score> getScore(int id){
         return scoreCrudRepository.findById(id);
     }
-    public Score save(Score score){
-        return scoreCrudRepository.save(score);
-    }
+    public Score save(Score score){ return scoreCrudRepository.save(score); }
+    public void delete(Score score) { scoreCrudRepository.delete(score);}
 }

@@ -1,6 +1,7 @@
 package com.usa.ciclo3.ciclo3.service;
 
 import com.usa.ciclo3.ciclo3.model.Category;
+import com.usa.ciclo3.ciclo3.model.Skateboard;
 import com.usa.ciclo3.ciclo3.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,35 @@ public class CategoryService {
                 return category;
             }
         }
+    }
+
+    public Category update(Category category){
+        if(category.getId()!=null){
+            Optional<Category> categoryEjemplo=categoryRepository.getCategory(category.getId());
+            if(!categoryEjemplo.isEmpty()){
+                if(category.getName()!=null){
+                    categoryEjemplo.get().setName(category.getName());
+                }
+                if(category.getDescription()!=null){
+                    categoryEjemplo.get().setDescription(category.getDescription());
+                }
+                categoryRepository.save(categoryEjemplo.get());
+                return categoryEjemplo.get();
+            }
+            else{
+                return category;
+            }
+        }
+        else{
+            return category;
+        }
+    }
+
+    public boolean deleteCategory(int id){
+        Boolean aBoolean = getCategory(id).map(category -> {
+            categoryRepository.delete(category);
+            return true;
+        }).orElse(false);
+        return aBoolean;
     }
 }
