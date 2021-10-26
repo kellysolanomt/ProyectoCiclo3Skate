@@ -42,6 +42,12 @@ public class MessageService {
                 if(message.getMessageText()!=null){
                     messageEjemplo.get().setMessageText(message.getMessageText());
                 }
+                if(message.getClient()!=null){
+                    messageEjemplo.get().setClient(message.getClient());
+                }
+                if(message.getSkate()!=null){
+                    messageEjemplo.get().setSkate(message.getSkate());
+                }
                 messageRepository.save(messageEjemplo.get());
                 return messageEjemplo.get();
             }

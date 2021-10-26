@@ -45,6 +45,9 @@ public class AdminService {
                 if(admin.getPassword()!=null){
                     adminEjemplo.get().setPassword(admin.getPassword());
                 }
+                if(admin.getEmail()!=null){
+                    adminEjemplo.get().setEmail(admin.getEmail());
+                }
                 adminRepository.save(adminEjemplo.get());
                 return adminEjemplo.get();
             }

@@ -41,6 +41,9 @@ public class ClientService {
                 if(client.getName()!=null){
                     clientEjemplo.get().setName(client.getName());
                 }
+                if(client.getEmail()!=null){
+                    clientEjemplo.get().setEmail(client.getEmail());
+                }
                 if(client.getAge()!=null){
                     clientEjemplo.get().setAge(client.getAge());
                 }
