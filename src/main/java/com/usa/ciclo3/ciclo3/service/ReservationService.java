@@ -9,19 +9,49 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Reto 4: el equipo desarrollará los servicios de backend para realizar edición y borrado de las entidades, ahora, los
+ * servicios que serán implementados son los servicios PUT y DELETE. Se debe incluir en el frontend la posibilidad de
+ * editar las entidades y permitir el borrado de las mismas. Posteriormente se implementará el ejercicio de autenticación
+ * con oauth2.
+ *
+ * @author David Ballen, Nicolas Caicedo, Liliana Torres, Kelly Solano, Ruben Ramos.
+ * @version 1.0
+ * @since 25/10/2021
+ */
+/**
+ * Servicio Reservacion
+ *
+ * @author David Ballen, Nicolas Caicedo, Liliana Torres, Kelly Solano, Ruben Ramos.
+ * @version 1.0
+ * @since 25/10/2021
+ */
 @Service
+/**Clase ReservationsService*/
 public class ReservationService {
-
+    //Anotacion Autowired
     @Autowired
+    /**
+     * Se instancia el repositorio de reservaciones.
+     * */
     private ReservationRepository reservationRepository;
 
+    /**
+     * Función obtener reservaciones: retorna lista de reservas.
+     * */
     public List<Reservation> getAll(){
         return reservationRepository.getAll();
     }
+    /**
+     * Función obtener reserva: retorna la reserva segun ID.
+     * */
     public Optional<Reservation> getReservation(int id){
         return reservationRepository.getReservation(id);
     }
 
+    /**
+     * Función guardar reserva: almacena nueva reserva.
+     * */
     public Reservation save(Reservation reservation){
         if(reservation.getIdReservation()==null){
             return reservationRepository.save(reservation);
@@ -36,6 +66,9 @@ public class ReservationService {
         }
     }
 
+    /**
+     * Función actualizar reserva: modifica una reserva.
+     * */
     public Reservation update(Reservation reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservation> reservationEjemplo=reservationRepository.getReservation(reservation.getIdReservation());
@@ -61,6 +94,9 @@ public class ReservationService {
         }
     }
 
+    /**
+     * Función eliminar reserva: borra una reserva.
+     * */
     public boolean deleteReservation(int id){
         Boolean aBoolean = getReservation(id).map(reservation -> {
             reservationRepository.delete(reservation);
