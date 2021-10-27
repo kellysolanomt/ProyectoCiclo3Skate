@@ -1,7 +1,6 @@
 package com.usa.ciclo3.ciclo3.service;
 
 import com.usa.ciclo3.ciclo3.model.Reservation;
-import com.usa.ciclo3.ciclo3.model.Skateboard;
 import com.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
