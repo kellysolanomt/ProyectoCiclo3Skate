@@ -12,6 +12,7 @@ import java.util.Map;
 public class UserController {
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal){
+        //return principal.getAttributes(); <= No se recomienda! Expone datos privados
         return Collections.singletonMap("name", principal.getAttribute("name"));
     }
 }

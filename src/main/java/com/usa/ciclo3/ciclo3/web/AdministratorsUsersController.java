@@ -17,44 +17,45 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.usa.ciclo3.ciclo3.model.Client;
-import com.usa.ciclo3.ciclo3.service.ClientService;
+import com.usa.ciclo3.ciclo3.model.AdministratorsUsers;
+import com.usa.ciclo3.ciclo3.service.AdministratorsUsersService;
 
 @RestController
-@RequestMapping("/api/Client")
+@RequestMapping("/api/Admin")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
 		RequestMethod.DELETE })
-public class ClientController {
+public class AdministratorsUsersController {
 
 	@Autowired
-	private ClientService clientService;
+	private AdministratorsUsersService administratorsUsersService;
 
 	@GetMapping("/all")
-	public List<Client> getClients() {
-		return clientService.getAll();
+	public List<AdministratorsUsers> getResrvations() {
+
+		return administratorsUsersService.getAll();
+
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Client> getClient(@PathVariable("id") int id) {
-		return clientService.getClient(id);
+	public Optional<AdministratorsUsers> getResrvation(@PathVariable("id") int id) {
+
+		return administratorsUsersService.getAdministratorUser(id);
+
 	}
 
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Client saveClient(@RequestBody Client client) {
-		return clientService.save(client);
+	public AdministratorsUsers save(@RequestBody AdministratorsUsers admin) {
+		return administratorsUsersService.save(admin);
 	}
 
 	@PutMapping("/update")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Client updateClient(@RequestBody Client client) {
-		return clientService.update(client);
+	public AdministratorsUsers updateAdmin(@RequestBody AdministratorsUsers admin) {
+		return administratorsUsersService.update(admin);
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public boolean deleteClient(@PathVariable("id") int clientId) {
-		return clientService.deleteClient(clientId);
+	public boolean deleteAdmin(@PathVariable("id") int adminId) {
+		return administratorsUsersService.deleteAdmin(adminId);
 	}
-
 }
